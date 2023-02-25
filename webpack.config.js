@@ -10,7 +10,13 @@ const isProduction = process.env.NODE_ENV == 'production';
 const config = {
     entry: './src/index.js',
     output: {
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'build'),
+        clean: true,
+        publicPath: '/',
+    },
+    resolve: {
+        extensions: ['.js'],
     },
     plugins: [
         new HtmlWebpackPlugin(),
@@ -24,6 +30,19 @@ const config = {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
                 type: 'asset',
             },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    "css-loader",
+                    "sass-loader",
+                ]
+            },
+            { 
+                test: /\.js$/, 
+                exclude: /(node_modules|bower_components)/, 
+                use: { loader: 'babel-loader', 
+                options: { presets:  ["@babel/preset-react"] } } 
+            }
 
             // Add your rules for custom modules here
             // Learn more about loaders from https://webpack.js.org/loaders/
@@ -34,10 +53,10 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = 'production';
-        
-        
+
+
         config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
-        
+
     } else {
         config.mode = 'development';
     }
