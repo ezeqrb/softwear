@@ -11,7 +11,8 @@ import rootReducer from "./redux/reducers/rootReducer";
 import products from "./data/products.json";
 import App from "./App";
 import "./assets/scss/style.scss";
-/* import * as serviceWorker from "./serviceWorker"; */
+import * as serviceWorker from "./serviceWorker";
+
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const store = createStore(
