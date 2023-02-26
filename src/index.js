@@ -14,6 +14,7 @@ import "./assets/scss/style.scss";
 /* import * as serviceWorker from "./serviceWorker"; */
 
 import { composeWithDevTools } from "redux-devtools-extension";
+import FirebaseProvider from "./context/firebase.context";
 
 const store = createStore(
   rootReducer,
@@ -26,7 +27,9 @@ store.dispatch(fetchProducts(products));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <FirebaseProvider>
+      <App />
+    </FirebaseProvider>
   </Provider>,
   document.getElementById("root")
 );
