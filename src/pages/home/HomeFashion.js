@@ -10,7 +10,7 @@ const HomeFashion = () => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Fashion Home</title>
+        <title>SoftWear | Home</title>
         <meta
           name="description"
           content="Home softwear indumentaria para desarrolladores"
